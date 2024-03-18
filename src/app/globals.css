@@ -6,6 +6,20 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  /* Colors */
+  --color-orange-1: #FFF3EB;
+  --color-orange-2: #FFAC70;
+  --color-orange-3: #FF8B37;
+  --color-orange-4: #E87928;
+  --color-green-1: #E6FAEA;
+  --color-green-3: #47D867;
+  --color-red-1: #FDEEED;
+  --color-red-3: #EC6259;
+  --color-grey-1: #F5F5F7;
+  --color-grey-3: #D0D0D8;
+  --color-grey-4: #999999;
+  --color-black-1: #1C1C21;
+  --color-white-1: #FFFFFF;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,13 +31,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+    font-family: 'Inter';
 }
 
 @layer utilities {
