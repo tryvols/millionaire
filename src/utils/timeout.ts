@@ -1,3 +1,5 @@
-export const timeout = (ms: number): Promise<void> => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-};
+export default function timeout(ms: number): Promise<void> {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}

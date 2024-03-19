@@ -1,3 +1,3 @@
-export const makeGetAnswerVariant = (variants: string | Array<any>) => (answerOrderNumber: number): string => {
-    return variants[answerOrderNumber].toString();
-};
+export default function makeGetAnswerVariant(variants: string | Array<any>) {
+  return (answerOrderNumber: number): string => variants[answerOrderNumber].toString();
+}

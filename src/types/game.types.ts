@@ -1,1 +1,1 @@
-export type GameStatus = "ready_to_start" | "ongoing" | "finished";
+export type GameStatus = 'ready_to_start' | 'ongoing' | 'finished';

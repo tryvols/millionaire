@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { GameReducer } from './features/game/game-slice';
 
-export const makeStore = () => {
-    return configureStore({
-        reducer: GameReducer
-    });
-};
+export const makeStore = () => configureStore({
+  reducer: GameReducer,
+});
 
 // Infer the type of makeStore
 export type AppStore = ReturnType<typeof makeStore>;

@@ -1,1 +1,3 @@
-export const answerBigLetterVariants = "ABCDEFGH";
+const answerBigLetterVariants = 'ABCDEFGH';
+
+export default answerBigLetterVariants;
