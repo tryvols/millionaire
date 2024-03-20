@@ -89,7 +89,7 @@ const GameButton: FC<GameButtonProps> = memo(({
 GameButton.defaultProps = {
   theme: 'inactive',
   className: '',
-  hoverTheme: 'hover'
+  hoverTheme: 'hover',
 };
 
 export default GameButton;

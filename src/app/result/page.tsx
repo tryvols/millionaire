@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useAppSelector } from '@/store/hooks';
-import StandardPageLayout from '@/components/layouts/standard-page-layout';
+import StandardPageLayout from '@/layouts/standard-page-layout';
 import formatAmount from '@/utils/format-amount';
 import gameConfig from '@/config/game-config.json';
 
