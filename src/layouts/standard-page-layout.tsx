@@ -36,7 +36,7 @@ const StandardPageLayout: FC<StandardPageLayoutProps> = memo(({
   }, [dispatch, router]);
 
   return (
-    <main className={`${containerClassName} flex h-dvh flex-col md:flex-row items-center justify-between p-4 pt-8 md:p-20 bg-grey-1`}>
+    <main className={`${containerClassName} h-dvh flex flex-col md:flex-row items-center justify-between p-4 pt-8 md:p-20 bg-grey-1`}>
       <Image
         className="flex-1 max-sm:w-11/12 max-md:w-8/12"
         src="/hand.svg"
