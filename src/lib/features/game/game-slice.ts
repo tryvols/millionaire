@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import { GameStep, QuestionAnswer } from '@/types/config.types';
 import { GameStatus } from '@/types/game.types';
 import gameConfig from '@/config/game-config.json';
+import createAppSlice from '@/lib/create-app-slice';
 
 export type GameState = Readonly<{
   activeStep: GameStep;
@@ -12,32 +13,30 @@ export type GameState = Readonly<{
 
 const steps = gameConfig.steps.sort();
 
-const GameSlice = createSlice({
+const initialState: GameState = {
+  activeStep: steps[0],
+  gameStatus: 'ready_to_start',
+  steps,
+  earned: 0,
+};
+
+export const gameSlice = createAppSlice({
   name: 'game',
+  initialState,
+  reducers: (create) => ({
+    startGame: create.reducer((state) => ({
+      ...state,
+      gameStatus: 'ongoing',
+      activeStep: state.steps[0],
+      earned: 0,
+    })),
 
-  initialState: {
-    activeStep: steps[0],
-    gameStatus: 'ready_to_start',
-    steps,
-    earned: 0,
-  } satisfies GameState as GameState,
+    readyToStartGame: create.reducer((state) => ({
+      ...state,
+      gameStatus: 'ready_to_start',
+    })),
 
-  reducers: {
-    startGame(state) {
-      return {
-        ...state,
-        gameStatus: 'ongoing',
-        activeStep: state.steps[0],
-        earned: 0,
-      };
-    },
-    readyToStartGame(state) {
-      return {
-        ...state,
-        gameStatus: 'ready_to_start',
-      };
-    },
-    answerQuestion(state, action: PayloadAction<QuestionAnswer>) {
+    answerQuestion: create.reducer((state, action: PayloadAction<QuestionAnswer>) => {
       const { amount } = state.activeStep;
 
       if (action.payload.isCorrect) {
@@ -65,10 +64,8 @@ const GameSlice = createSlice({
         ...state,
         gameStatus: 'finished',
       };
-    },
-  },
+    }),
+  }),
 });
 
-export const { startGame, answerQuestion, readyToStartGame } = GameSlice.actions;
-
-export const GameReducer = GameSlice.reducer;
+export const { startGame, answerQuestion, readyToStartGame } = gameSlice.actions;

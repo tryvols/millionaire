@@ -8,8 +8,8 @@ import gameConfig from '../../config/game-config.json';
 import GameButton from '@/components/game-button/game-button';
 import makeGetAnswerVariant from '../../utils/get-answer-variant';
 import answerBigLetterVariants from '../../constants/answer-variants';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { answerQuestion, startGame } from '@/store/features/game/game-slice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { answerQuestion, startGame } from '@/lib/features/game/game-slice';
 import { QuestionAnswer } from '@/types/config.types';
 import { GameButtonThemes } from '@/constants/themes';
 import timeout from '@/utils/timeout';
@@ -23,8 +23,8 @@ export default function GamePage() {
 
   // state
   const dispatch = useAppDispatch();
-  const activeStep = useAppSelector((state) => state.activeStep);
-  const gameStatus = useAppSelector((state) => state.gameStatus);
+  const activeStep = useAppSelector((state) => state.game.activeStep);
+  const gameStatus = useAppSelector((state) => state.game.gameStatus);
 
   // navigation
   const router = useRouter();

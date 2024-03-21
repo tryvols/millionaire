@@ -9,7 +9,7 @@ import gameConfig from '@/config/game-config.json';
 import { AmountThemes } from '@/constants/themes';
 import { GameStep } from '@/types/config.types';
 import formatAmount from '@/utils/format-amount';
-import { useAppSelector } from '@/store/hooks';
+import { useAppSelector } from '@/lib/hooks';
 
 interface GameAmountsProps {
   activeStep: GameStep;
@@ -22,7 +22,7 @@ const GameAmounts: FC<GameAmountsProps> = memo(({
   isVisible,
   onHide,
 }: GameAmountsProps) => {
-  const steps = useAppSelector((state) => state.steps);
+  const steps = useAppSelector((state) => state.game.steps);
   const orderedSteps = useMemo(() => cloneDeep(steps).sort((a, b) => b.amount - a.amount), [steps]);
 
   const getAmountTheme = (step: GameStep): AmountThemes => {

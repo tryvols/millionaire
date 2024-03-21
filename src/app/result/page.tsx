@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { useAppSelector } from '@/store/hooks';
-import StandardPageLayout from '@/layouts/standard-page-layout';
+import { useAppSelector } from '@/lib/hooks';
+import StandardPageLayout from '@/app/layouts/standard-page-layout';
 import formatAmount from '@/utils/format-amount';
 import gameConfig from '@/config/game-config.json';
 
 export default function Home() {
-  const earned = useAppSelector((state) => state.earned);
+  const earned = useAppSelector((state) => state.game.earned);
 
   return (
     <StandardPageLayout

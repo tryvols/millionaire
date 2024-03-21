@@ -1,5 +1,5 @@
 import React from 'react';
-import StandardPageLayout from '../layouts/standard-page-layout';
+import StandardPageLayout from './layouts/standard-page-layout';
 
 export default function Home() {
   return (

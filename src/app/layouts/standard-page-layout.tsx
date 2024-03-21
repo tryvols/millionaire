@@ -9,8 +9,8 @@ import React, {
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import SimpleButton from '@/components/simple-button';
-import { useAppDispatch } from '@/store/hooks';
-import { readyToStartGame } from '@/store/features/game/game-slice';
+import { useAppDispatch } from '@/lib/hooks';
+import { readyToStartGame } from '@/lib/features/game/game-slice';
 
 interface StandardPageLayoutProps {
   containerClassName?: string;

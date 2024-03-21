@@ -2,7 +2,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import StoreProvider from '@/components/prividers/store-provider';
+import StoreProvider from './store-provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
