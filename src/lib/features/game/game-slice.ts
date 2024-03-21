@@ -1,5 +1,5 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { GameStep, QuestionAnswer } from '@/types/config.types';
+import { GameConfig, GameStep, QuestionAnswer } from '@/types/config.types';
 import { GameStatus } from '@/types/game.types';
 import gameConfig from '@/config/game-config.json';
 import createAppSlice from '@/lib/create-app-slice';
@@ -7,8 +7,8 @@ import createAppSlice from '@/lib/create-app-slice';
 export type GameState = Readonly<{
   activeStep: GameStep;
   gameStatus: GameStatus;
-  steps: GameStep[];
   earned: number;
+  config: GameConfig;
 }>;
 
 const steps = gameConfig.steps.sort();
@@ -16,8 +16,11 @@ const steps = gameConfig.steps.sort();
 const initialState: GameState = {
   activeStep: steps[0],
   gameStatus: 'ready_to_start',
-  steps,
   earned: 0,
+  config: {
+    ...gameConfig,
+    steps,
+  },
 };
 
 export const gameSlice = createAppSlice({
@@ -27,7 +30,7 @@ export const gameSlice = createAppSlice({
     startGame: create.reducer((state) => ({
       ...state,
       gameStatus: 'ongoing',
-      activeStep: state.steps[0],
+      activeStep: state.config.steps[0],
       earned: 0,
     })),
 
@@ -40,11 +43,11 @@ export const gameSlice = createAppSlice({
       const { amount } = state.activeStep;
 
       if (action.payload.isCorrect) {
-        const activeStepId = state.steps.findIndex(
+        const activeStepId = state.config.steps.findIndex(
           (step) => state.activeStep.amount === step.amount,
         );
 
-        const nextStep = state.steps[activeStepId + 1];
+        const nextStep = state.config.steps[activeStepId + 1];
         if (nextStep === undefined) {
           return {
             ...state,

@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { cloneDeep } from 'lodash';
 
 import GameAmount from '@/components/game-amount';
-import gameConfig from '@/config/game-config.json';
 import { AmountThemes } from '@/constants/themes';
 import { GameStep } from '@/types/config.types';
 import formatAmount from '@/utils/format-amount';
@@ -22,7 +21,8 @@ const GameAmounts: FC<GameAmountsProps> = memo(({
   isVisible,
   onHide,
 }: GameAmountsProps) => {
-  const steps = useAppSelector((state) => state.game.steps);
+  const steps = useAppSelector((state) => state.game.config.steps);
+  const currencySign = useAppSelector((state) => state.game.config.currencySign);
   const orderedSteps = useMemo(() => cloneDeep(steps).sort((a, b) => b.amount - a.amount), [steps]);
 
   const getAmountTheme = (step: GameStep): AmountThemes => {
@@ -53,7 +53,7 @@ const GameAmounts: FC<GameAmountsProps> = memo(({
         {orderedSteps.map((step) => (
           <GameAmount
             key={step.amount}
-            text={formatAmount(step.amount, gameConfig.currencySign)}
+            text={formatAmount(step.amount, currencySign)}
             theme={getAmountTheme(step)}
           />
         ))}

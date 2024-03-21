@@ -4,7 +4,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import ReactLoading from 'react-loading';
-import gameConfig from '../../config/game-config.json';
 import GameButton from '@/components/game-button/game-button';
 import makeGetAnswerVariant from '../../utils/get-answer-variant';
 import answerBigLetterVariants from '../../constants/answer-variants';
@@ -25,6 +24,10 @@ export default function GamePage() {
   const dispatch = useAppDispatch();
   const activeStep = useAppSelector((state) => state.game.activeStep);
   const gameStatus = useAppSelector((state) => state.game.gameStatus);
+  const {
+    waitingForAnswerHighlightMs,
+    answerHighlightDurationMs,
+  } = useAppSelector((state) => state.game.config);
 
   // navigation
   const router = useRouter();
@@ -70,9 +73,9 @@ export default function GamePage() {
 
   const onClickAnswer = async (answer: QuestionAnswer) => {
     setActiveAnswer(answer);
-    await timeout(gameConfig.waitingForAnswerHighlightMs);
+    await timeout(waitingForAnswerHighlightMs);
     setIsCorrectAnswerVisible(true);
-    await timeout(gameConfig.answerHighlightDurationMs);
+    await timeout(answerHighlightDurationMs);
     setIsCorrectAnswerVisible(false);
     setActiveAnswer(null);
     dispatch(answerQuestion(answer));

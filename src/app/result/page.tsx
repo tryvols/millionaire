@@ -4,10 +4,10 @@ import React from 'react';
 import { useAppSelector } from '@/lib/hooks';
 import StandardPageLayout from '@/app/layouts/standard-page-layout';
 import formatAmount from '@/utils/format-amount';
-import gameConfig from '@/config/game-config.json';
 
 export default function Home() {
   const earned = useAppSelector((state) => state.game.earned);
+  const currencySign = useAppSelector((state) => state.game.config.currencySign);
 
   return (
     <StandardPageLayout
@@ -19,7 +19,7 @@ export default function Home() {
 
           {earned !== undefined ? (
             <h1 className="text-[2.2rem] md:text-[3.5rem] leading-9 md:leading-[4rem] font-semibold">
-              {`${formatAmount(earned, gameConfig.currencySign)} `}
+              {`${formatAmount(earned, currencySign)} `}
               earned
             </h1>
           ) : null}
